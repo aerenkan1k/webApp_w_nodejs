@@ -1,0 +1,92 @@
+<!-- views/news/edit.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haber Düzenle</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            padding: 20px;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            resize: vertical;
+        }
+        .btn {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-right: 10px;
+            font-size: 16px;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        button[type="submit"] {
+            background-color: #28a745;
+            font-size: 16px;
+        }
+        button[type="submit"]:hover {
+            background-color: #218838;
+        }
+        a {
+            display: inline-block;
+            margin-top: 10px;
+            text-decoration: none;
+            color: #007bff;
+            font-size: 16px;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Haber Düzenle</h1>
+    <form action="/news/<%= news._id %>?_method=PUT" method="POST">
+        <div>
+            <label for="title">Başlık:</label>
+            <input type="text" id="title" name="title" value="<%= news.title %>" required>
+        </div>
+        <div>
+            <label for="content">İçerik:</label>
+            <textarea id="content" name="content" rows="4" required><%= news.content %></textarea>
+        </div>
+        <div>
+            <label for="fullcontent">Haber Metni:</label>
+            <textarea id="fullcontent" name="fullcontent" rows="6" required><%= news.fullcontent %></textarea>
+        </div>
+        <div>
+            <label for="image">Resim URL:</label>
+            <input type="text" id="image" name="image" value="<%= news.image %>" required>
+        </div>
+        <button type="submit" class="btn">Güncelle</button>
+        <a href="/news" class="btn">Geri</a>
+    </form>
+</body>
+</html>

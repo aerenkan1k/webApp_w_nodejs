@@ -1,0 +1,92 @@
+<!-- views/news/index.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Money</title>
+    <style>
+        /* Haber öğelerini yan yana sıralamak için flexbox kullan */
+        ul {
+            display: flex;
+            flex-wrap: wrap;
+            list-style-type: none;
+            padding: 0;
+        }
+        /* Her haber öğesinin stilini belirle */
+        li {
+            flex: 0 0 calc(33.33% - 20px); /* Öğelerin genişliğini ayarla, 33.33% olacak şekilde */
+            margin: 10px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        /* Haber başlığının stilini belirle */
+        h2 {
+            margin-top: 0;
+        }
+        /* Resmin stilini belirle */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        /* Düzenle ve Sil bağlantılarının stilini belirle */
+        .edit-delete {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 12px; /* Düzenle butonu ile sil butonunun boyutlarını ayarla */
+            text-decoration: none;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .edit-delete.delete { /* Sil butonunun stilini belirle */
+            background-color: #dc3545;
+        }
+        /* Yeni haber ekle butonunun stilini belirle */
+        .add-news {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            text-decoration: none;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        /* "Money" yazısının stilini belirle */
+        h1 a {
+            color: #000;
+            text-decoration: none;
+            font-size: 24px;
+        }
+        /* "Money" yazısının hover stilini belirle */
+        h1 a:hover {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1><a href="/">Money</a></h1>
+    <br>
+    <br>
+    <br> 
+    <a href="/news/new" class="add-news">Yeni Haber Ekle</a>
+    <ul>
+        <% news.forEach(function(haber) { %>
+            <li>
+                <h2><%= haber.title %></h2>
+                <img src="<%= haber.image %>" alt="<%= haber.title %> Resmi">
+                <p><%= haber.content %></p>
+                <a href="/news/<%= haber._id %>/edit" class="edit-delete">Düzenle</a>
+                <form action="/news/<%= haber._id %>?_method=DELETE" method="POST" style="display:inline;">
+                    <button type="submit" class="edit-delete delete">Sil</button>
+                </form>
+            </li>
+        <% }); %>
+    </ul>
+</body>
+</html>

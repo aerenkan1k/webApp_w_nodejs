@@ -1,0 +1,39 @@
+<%- include('../partials/header') %>
+ <!-- Page Header-->
+ <header class="masthead" style="background-image: url('https://images.unsplash.com/photo-1593672715438-d88a70629abe?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="page-heading">
+                    <h1>Admin Paneli</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content-->
+<div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+            <% adminActions.forEach((action) => { %>
+                <div class="row mb-4 justify-content-center">
+                    <div class="col-lg-6 text-center">
+                        <button id="<%=action.actionId  %>" onclick="catchID(this.id)" type="button" class="btn btn-outline-primary w-100"><%=action.displayName  %></button>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+</div>
+
+<script>
+    function catchID(clicked_id){
+        if(clicked_id == 1){
+            window.location.href = 'siteMap'; return false;
+        }
+        if(clicked_id == 2){
+            window.location.href = 'News'; return false;
+        }
+    }
+</script>

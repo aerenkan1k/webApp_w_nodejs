@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= news.title %></title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        body {
+            background-image: url('https://images.unsplash.com/photo-1593672715438-d88a70629abe?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            background-size: cover; /* Resmi tam ekran yapar */
+            background-repeat: no-repeat; /* Resmin tekrarlamasını engeller */
+            background-attachment: fixed; /* Arka planın kaydırılmasını engeller */
+        }
+
+        .navbar-brand, .nav-link {
+            color: black !important;
+            font-weight: bold;
+        }
+
+        .container-haber {
+            max-width: 900px;
+            margin: 0 auto; /* Yatayda ortalar */
+            padding: 20px; /* İç kenar boşluğu ekler */
+            border: 1px solid #ccc; /* Kenarlık ekler */
+            border-radius: 8px; /* Köşe yuvarlaklığı ekler */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Gölge ekler */
+            background-color: #f9f9f9; /* Arka plan rengi */
+            backdrop-filter: blur(10px); /* Arka planı bulanıklaştırır */
+        }
+        
+        .container-haber img {
+            max-width: 100%; /* Görseli kare içine sığdırmak için */
+            display: block; /* Görseli blok element olarak ayarla */
+            margin: 0 auto 20px; /* Görseli yatayda ortala ve altına boşluk bırak */
+            border-radius: 8px; /* Görsel kenarlarına köşe yuvarlaklığı ekler */
+        }
+
+        .container-haber p {
+            margin-bottom: 20px; /* Paragraflar arasına boşluk bırak */
+        }
+    </style>
+
+    <!-- jQuery ve Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+    <!-- Navigasyon -->
+    <nav class="navbar navbar-expand-lg navbar-dark" id="mainNav">
+        <div class="container px-4 px-lg-5">
+            <a class="navbar-brand" href="/">Money</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                Menu
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto py-4 py-lg-0">
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/mdata">Anlık Veriler</a></li>
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/contact">İletişim</a></li>
+                    <% if (!currentUser) { %>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/signin">Giriş Yap</a></li>
+                    <% } else { %>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/admin"><%= currentUser.username %></a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/signout">Çıkış Yap</a></li>
+                    <% } %>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container-haber">
+        <h1><%= news.title %></h1>
+        <p><%= news.content %></p>
+        <img src="<%= news.image %>" alt="<%= news.title %>">
+        <p><%= news.fullcontent %></p>
+    </div>
+</body>
+</html>
